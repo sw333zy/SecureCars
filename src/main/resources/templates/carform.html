@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: headstuff">
+
+</head>
+<body>
+<div class="container"><nav th:replace="base :: navbar"></nav>
+
+
+
+    <form action="#"
+          th:action="@{/add}"
+          th:object="${car}"
+          method="post" enctype="multipart/form-data">
+
+        <input type="hidden" th:field="*{id}" />
+
+        Category:<select th:field="*{category}" class="form-control input-md">
+        <option th:each="option: ${categories}"
+                th:value="${option.id}">[[${option.categoryName}]]</option>
+    </select><br/>
+
+        Manufacturer :<input type="text" th:field="*{manufacturer}" />
+        <span th:if="${#fields.hasErrors('manufacturer')}"
+              th:errors="*{manufacturer}"></span><br/>
+
+        Model :<input type="text" th:field="*{model}" />
+        <span th:if="${#fields.hasErrors('model')}"
+              th:errors="*{model}"></span><br/>
+
+        Year :<input type="text" th:field="*{year}" />
+        <span th:if="${#fields.hasErrors('year')}"
+              th:errors="*{year}"></span><br/>
+
+        MSRP :<input type="text" th:field="*{msrp}" />
+        <span th:if="${#fields.hasErrors('msrp')}"
+              th:errors="*{msrp}"></span><br/>
+
+        <input type="file" name="file"/>
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: headstuff">
+</head>
+<body>
+<div class="container"><nav th:replace="base :: navbar"></nav>
+    <br/>
+    <span><a href="/addcategory">Add a new category? </a><a href="/add"> Add a new car?</a></span><br/>
+    <br/>
+
+    <div class="row">
+        <div class="col-md-4" th:each="car : ${cars}"><div th:replace="base :: car"></div></div>
+    </div>
+
+    <nav th:replace="base :: foot"></nav>
+    <th:block th:replace="base :: jslinks"></th:block>
+</div>
+</body>
+</html>
