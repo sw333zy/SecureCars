@@ -31,7 +31,7 @@ public class HomeController {
     @GetMapping("/")
     public String index() {
 
-        return "login";
+        return "list";
     }
 
     //if you click new user you go to the registration page
@@ -154,7 +154,7 @@ public class HomeController {
                                  @RequestParam("file") MultipartFile file){
         if (file.isEmpty()) {
             carRepository.save(car);
-            return "redirect:/";
+            return "redirect:/list";
         }
         try{
             Map uploadResult = cloudc.upload(file.getBytes(),
@@ -163,9 +163,9 @@ public class HomeController {
             carRepository.save(car);
         }catch (IOException e){
             e.printStackTrace();
-            return "redirect:/add";
+            return "redirect:/addcategory";
         }
-        return  "redirect:/";
+        return  "redirect:/list";
     }
 
     @PostMapping("/process")
@@ -187,9 +187,9 @@ public class HomeController {
         if (result.hasErrors()) {
             return "categoryform";
         }
-        //be sure to set the user
+        //save category and add car
         categoryRepository.save(category);
-        return "redirect:/add";
+        return "redirect:/addcar";
 
     }
 
