@@ -28,7 +28,6 @@ public class Category {
         this.id = id;
     }
 
-
     public Set<Car> getCars() {
         return cars;
     }

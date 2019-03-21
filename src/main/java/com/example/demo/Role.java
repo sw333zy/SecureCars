@@ -38,4 +38,12 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
+    }
 }

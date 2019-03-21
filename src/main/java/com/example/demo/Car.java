@@ -9,6 +9,8 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    //car details
     @NotNull
     private String manufacturer;
     @NotNull
@@ -17,15 +19,42 @@ public class Car {
     private int year;
     @NotNull
     private double msrp;
-    //    private String categoryName;
     private String carpic;
+    //each car has a user
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
+
+    //each car belongs to a specific category
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
 
-
+    //car, users, id, and categories
     public Car() {
+    }
+
+    public Car(Category category) {
+        this.category = category;
+    }
+
+    public Car(User user) {this.user = user;}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public long getId() {
@@ -35,6 +64,8 @@ public class Car {
     public void setId(long id) {
         this.id = id;
     }
+
+    //car attributes
 
     public String getManufacturer() {
         return manufacturer;
@@ -68,13 +99,7 @@ public class Car {
         this.msrp = msrp;
     }
 
-//    public String getCategoryName() {
-//        return categoryName;
-//    }
-//
-//    public void setCategoryName(String categoryName) {
-//        this.categoryName = categoryName;
-//    }
+    //car pic for cloudinary
 
     public String getCarpic() {
         return carpic;
@@ -84,11 +109,8 @@ public class Car {
         this.carpic = carpic;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+
+
+
 }

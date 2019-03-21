@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name="User_Data")
@@ -29,6 +30,20 @@ public class User {
 
     @Column(name = "username")
     private String username;
+
+
+    //add car to user
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Car> car;
+
+    public Set<Car> getCar() {
+        return car;
+    }
+
+    public void setCar(Set<Car> car) {
+        this.car = car;
+    }
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
